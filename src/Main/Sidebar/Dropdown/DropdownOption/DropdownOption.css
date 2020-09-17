@@ -1,0 +1,32 @@
+.DropdownOption {
+    cursor: pointer;
+    height: 1.25em;
+    width:16vw;
+    border-radius: 6px;
+}
+.DropdownOption.selected {
+    background-color: var(--accent);
+    color: var(--accent-text);
+    padding: 4px;
+}
+.DropdownOption.selected::after {
+    content: "";
+    display: block;
+    background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTAgNTA7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MCA1MCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGcgaWQ9IkxheWVyXzEiPjxwYXRoIGQ9Ik0yNSwxLjU0Nkw0LjY3NSwyM2g0MC42NUwyNSwxLjU0NnogTTI1LDQuNDU0TDQwLjY3NSwyMUg5LjMyNUwyNSw0LjQ1NHoiLz48cGF0aCBkPSJNMjUsNDguNDU0TDQ1LjMyNSwyN0g0LjY3NUwyNSw0OC40NTR6IE0yNSw0NS41NDZMOS4zMjUsMjloMzEuMzVMMjUsNDUuNTQ2eiIvPjwvZz48Zy8+PC9zdmc+");
+    height:1.3em;
+    min-width:1em;
+    filter: invert(1);
+    float: right;
+    background-repeat: no-repeat;
+    background-position: 0 20%;
+}
+.DropdownOption.selected span {
+    max-width: calc(100% - 1em);
+}
+.DropdownOption span {
+    max-width:105%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}

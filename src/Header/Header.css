@@ -1,0 +1,22 @@
+.Header {
+    width: 100%;
+    height: 2rem;
+    background-color: var(--accent-2);
+    color:var(--accent-text);
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+.appName {
+    color: inherit;
+    text-decoration: inherit;
+}
+.logo {
+    height:2rem;
+    position: relative;
+    top: 0.15rem;
+    filter: invert(1) drop-shadow(0 1px 0px black);
+}
+.logo-container {
+    margin-left: 0.2rem;
+}
