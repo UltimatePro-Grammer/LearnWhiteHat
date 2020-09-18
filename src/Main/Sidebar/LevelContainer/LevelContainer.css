@@ -1,0 +1,9 @@
+.LevelContainer {
+    height: 60%;
+}
+.LevelContainer h1 {
+    font-size:2em;
+}
+.LevelContainer p, h1 {
+    text-align: center;
+}

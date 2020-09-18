@@ -14,7 +14,7 @@ class Dropdown extends React.Component<{options: Array<string>, selection: (val:
     }
     dropClick = (val: string)=>{
         if(this.state.selected === val && !this.state.dropped) {
-            this.setState({dropped: true, shown:this.props.options, shownHeight:this.props.options.length * 1.3});
+            this.setState({dropped: true, shown:this.props.options, shownHeight: this.props.options.length * 1.35 });
         } else if(this.state.dropped) {
             this.setState({dropped: false, shown:[val], selected: val, shownHeight: 1.5});
             this.props.selection(val);

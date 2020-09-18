@@ -3,29 +3,41 @@ import './Sidebar.css';
 import Dropdown from './Dropdown/Dropdown';
 import Description from './Description/Description';
 import ResizeObserver from 'resize-observer-polyfill';
+import LevelContainer from './LevelContainer/LevelContainer';
 
-class Sidebar extends React.Component<{}, {width: string}> {
+class Sidebar extends React.Component<{}, {width: string, desc: string}> {
     container: React.RefObject<HTMLElement>
+    descriptions: {[index: string]: string} = {
+        XSS: "Attempt to execute arbitrary javascript on a victim's browser. Complete the challenge by successfully executing an alert on the page.",
+        CTF: "CTF (Capture The Flag) involves finding a specific string token which is submitted to beat the challenge."
+    }
+    handleGenreSelect = (value: string)=>{
+        this.setState({desc: this.descriptions[value]})
+    }
     constructor(props: object) {
         super(props);
         this.state = {
-            width: ""
+            width: "", 
+            desc: this.descriptions.XSS
         }
         this.container = createRef();
     }
     render() {
         return (
             <aside className="Sidebar" ref={this.container}>
-                <Dropdown options={["XSS", "CTF", "Password Crack"]} selection={(val: string)=>{console.log(val)}} />
+                <Dropdown options={["XSS", "CTF"]} selection={this.handleGenreSelect} />
                 <Dropdown options={["Easy", "Intermediate", "Advanced", "Pro"]} selection={(val: string)=>{console.log(val)}} />
-                <Description content="Attempt to execute arbitrary javascript on a victim's browser. Complete the challenge by successfully executing an alert on the page." width={this.state.width} />
+                <Description content={this.state.desc} width={this.state.width} />
+                <LevelContainer width={this.state.width} />
             </aside>
         )
     }
     componentDidMount() {
         const ro = new ResizeObserver((entries)=>{
-            entries.forEach((entry)=>{
-                this.setState({width: entry.contentRect.width < 560 ? (entry.contentRect.width - 40).toString()+"px" : ""});
+            window.requestAnimationFrame(()=>{
+                entries.forEach((entry)=>{
+                    this.setState({width: entry.contentRect.width < 560 ? (entry.contentRect.width - 40).toString()+"px" : ""});
+                });
             });
         });
         if(this.container.current) {

@@ -1,0 +1,44 @@
+.XP {
+    width: 16vw;
+    margin: 0 auto;
+    position: relative;
+    left: 3px;
+    text-align: center;
+}
+.svg-container {
+    display: inline-block;
+    text-align: unset;
+    position: relative;
+    max-width:60vw;
+}
+svg {
+    width: 100%;
+}
+
+svg:nth-child(2) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+}
+svg:nth-child(2) path {
+    fill: none;
+    stroke-width: 9;
+    stroke-dasharray: 629;
+    stroke: rgba(38, 231, 3, 1);
+    animation: load 1s;
+}
+svg:nth-child(1) path {
+    fill: none;
+    stroke-width: 9;
+    stroke: rgba(0, 0, 0, 0.212);
+    transform: translateX(-4px) translateY(5px);
+}
+@keyframes load {
+    from {
+        stroke-dashoffset: 629;
+    }
+}

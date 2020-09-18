@@ -1,7 +1,7 @@
 .Dropdown {
     font-size:1.7em;
     min-width: 4rem;
-    max-width: 60%;
+    max-width: 65%;
     margin: 0.4em auto;
 
     -moz-appearance: none;
@@ -13,4 +13,6 @@
     border-radius: 6px;
     transition: height .1s;
     height:1.5em;
+
+    /* overflow: hidden; */
 }
