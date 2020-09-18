@@ -30,6 +30,7 @@ svg:nth-child(2) path {
     stroke-dasharray: 629;
     stroke: rgba(38, 231, 3, 1);
     animation: load 1s;
+    transition: stroke-dashoffset 0.3s;
 }
 svg:nth-child(1) path {
     fill: none;
