@@ -51,3 +51,18 @@
     height: calc(90% - 1.5em - 6px);
     width: 30%;
 }
+
+@media (max-width: 612px) {
+    .Card h1 {
+        width: 90%;
+        font-size: 3em;
+        top: 1em;
+        left: 0.4em;
+    }
+    .Card p {
+        max-width: 90%;
+    }
+    .preview {
+        display:none;
+    }
+}

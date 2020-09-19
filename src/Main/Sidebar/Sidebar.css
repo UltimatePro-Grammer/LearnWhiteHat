@@ -10,3 +10,11 @@
     height:calc(100vh - 3rem);
     padding-top: 1rem;
 }
+
+
+@media (max-width: 612px) {
+    .Sidebar {
+        height: unset;
+        overflow: auto;
+    }
+}

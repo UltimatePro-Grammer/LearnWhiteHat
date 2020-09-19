@@ -4,3 +4,8 @@
     height:100%;
     overflow: auto;
 }
+@media (max-width: 612px) {
+    .Content {
+        height: unset;
+    }
+}
