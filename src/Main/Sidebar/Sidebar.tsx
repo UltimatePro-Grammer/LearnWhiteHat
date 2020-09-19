@@ -4,17 +4,25 @@ import Dropdown from './Dropdown/Dropdown';
 import Description from './Description/Description';
 import ResizeObserver from 'resize-observer-polyfill';
 import LevelContainer from './LevelContainer/LevelContainer';
-
-class Sidebar extends React.Component<{}, {width: string, desc: string}> {
+interface SidebarProps {
+    genreSelect: (newValue: string)=>void,
+    difficultySelect: (newValue: string)=>void
+}
+class Sidebar extends React.Component<SidebarProps, {width: string, desc: string}> {
     container: React.RefObject<HTMLElement>
     descriptions: {[index: string]: string} = {
         XSS: "Attempt to execute arbitrary javascript on a victim's browser. Complete the challenge by successfully executing an alert on the page.",
         CTF: "CTF (Capture The Flag) involves finding a specific string token which is submitted to beat the challenge."
     }
     handleGenreSelect = (value: string)=>{
-        this.setState({desc: this.descriptions[value]})
+        this.setState({desc: this.descriptions[value]});
+        console.log(value);
+        this.props.genreSelect(value.toLowerCase());
     }
-    constructor(props: object) {
+    handleDifficultySelect = (value: string)=>{
+        this.props.difficultySelect(value.toLowerCase());
+    }
+    constructor(props: SidebarProps) {
         super(props);
         this.state = {
             width: "", 
@@ -26,7 +34,7 @@ class Sidebar extends React.Component<{}, {width: string, desc: string}> {
         return (
             <aside className="Sidebar" ref={this.container}>
                 <Dropdown options={["XSS", "CTF"]} selection={this.handleGenreSelect} />
-                <Dropdown options={["Easy", "Intermediate", "Advanced", "Pro"]} selection={(val: string)=>{console.log(val)}} />
+                <Dropdown options={["Easy", "Intermediate", "Advanced", "Pro"]} selection={this.handleDifficultySelect} />
                 <Description content={this.state.desc} width={this.state.width} />
                 <LevelContainer width={this.state.width} />
             </aside>
