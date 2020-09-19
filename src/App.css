@@ -7,6 +7,11 @@
     --accent-2: #28A2A2;
     --accent-3: #FAA916;
     --accent-text: #ffffff;
+
+    --easy: rgb(46, 163, 0);
+    --intermediate: rgb(0, 204, 153);
+    --advanced: rgb(124, 43, 231);
+    --pro: #D7263D;
 }
 .unselectable {
     /* From https://stackoverflow.com/a/4407335/13608595 */

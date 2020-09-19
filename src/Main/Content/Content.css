@@ -1,4 +1,6 @@
 .Content {
     flex-grow: 6.3;
     min-width:73%;
+    height:100%;
+    overflow: auto;
 }

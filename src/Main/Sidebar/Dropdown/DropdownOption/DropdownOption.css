@@ -1,7 +1,8 @@
 .DropdownOption {
     cursor: pointer;
     height: 1.15em;
-    width:16vw;
+    width:100%;
+    max-width: 9rem;
     border-radius: 6px;
 }
 .DropdownOption.selected {

@@ -1,0 +1,20 @@
+.Tag {
+    padding:0.3em 0.7em;
+    margin-right:0.5em;
+    background-color: var(--accent-3);
+    color: white;
+    border-radius: 13px;
+    display: inline-block;
+    min-width: 5vw;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+    appearance: none;
+    -webkit-appearance: none;
+    text-decoration: none;
+    border: none
+}
+.Tag:active {
+    box-shadow: -1px -1px 4px rgba(0,0,0,0.1);
+}

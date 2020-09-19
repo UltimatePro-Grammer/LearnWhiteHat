@@ -36,7 +36,7 @@ class Sidebar extends React.Component<{}, {width: string, desc: string}> {
         const ro = new ResizeObserver((entries)=>{
             window.requestAnimationFrame(()=>{
                 entries.forEach((entry)=>{
-                    this.setState({width: entry.contentRect.width < 560 ? (entry.contentRect.width - 40).toString()+"px" : ""});
+                    this.setState({width: entry.contentRect.width < 560 ? (entry.contentRect.width - 50).toString()+"px" : ""});
                 });
             });
         });

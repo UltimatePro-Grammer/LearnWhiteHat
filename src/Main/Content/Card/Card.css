@@ -1,0 +1,53 @@
+.Card {
+    background-color: rgba(0,0,0,0.07);
+    width:90%;
+    height: 16.5em;
+    margin: 2em auto;
+    border-radius: 9px;
+    padding: 1rem;
+    position: relative;
+    border: none;
+}
+.Card:active {
+    color: unset;
+}
+.Card h1 {
+    width: 63%;
+    font-size: 3.9em;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    position: absolute;
+    top: 0.4em;
+    left: 0.3em;
+}
+.Card p {
+    max-width: 60%;
+    height: 3.8em;
+    overflow: hidden;
+    font-size: 1.4em;
+    display: inline-block;
+    position: absolute;
+    top: 5em;
+    left:1em;
+}
+.tag-container {
+    width: 60%;
+    height: 2.5em;
+    overflow: hidden;
+    position: absolute;
+    bottom:1.2em;
+    left:1.2em;
+}
+.preview {
+    position: absolute;
+    right: 1em;
+    top:1.5em;
+    background-color:white;
+    border: 3px solid var(--accent-2);
+    height: calc(90% - 1.5em - 6px);
+    width: 30%;
+}
