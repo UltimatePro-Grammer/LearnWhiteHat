@@ -8,13 +8,14 @@ interface ContentProps {
 type Genre = "xss" | "ctf";
 type Difficulty = "easy" | "intermediate" | "Advanced" | "Pro";
 
-class Content extends React.Component<ContentProps, {genre: Genre, difficulty: Difficulty, cards: {title: string, desc: string, tags: [], difficulty: string, html: string}[]}> {
+class Content extends React.Component<ContentProps, {genre: Genre, difficulty: Difficulty, cards: {title: string, desc: string, tags: [], difficulty: string, html: string}[], loaded: boolean}> {
     constructor(props: ContentProps) {
         super(props);
         this.state = {
             genre: "xss",
             difficulty: "easy",
-            cards:[]
+            cards:[],
+            loaded: false
         }
     }
     componentDidMount() {
@@ -24,12 +25,15 @@ class Content extends React.Component<ContentProps, {genre: Genre, difficulty: D
         return (
             <section className="Content">
                 {
-                    this.state.cards.length > 0 ?
-                    this.state.cards.map((obj)=>{
-                        return <Card title={obj.title} key={obj.title} tags={obj.tags} difficulty={obj.difficulty[0].toLocaleUpperCase()+obj.difficulty.slice(1)} html={obj.html} />
-                    })
+                    this.state.loaded ? 
+                        this.state.cards.length > 0 ?
+                        this.state.cards.map((obj)=>{
+                            return <Card title={obj.title} key={obj.title} tags={obj.tags} difficulty={obj.difficulty[0].toLocaleUpperCase()+obj.difficulty.slice(1)} html={obj.html} />
+                        })
+                        :
+                        <h1 className="no-chall">No challenges under these restrictions. <br /> <a href="https://github.com/UltimatePro-Grammer/LearnWhiteHat" rel="noopener noreferrer" target="_blank">Contribute some?</a></h1>
                     :
-                    <h1 className="no-chall">No challenges under these restrictions. <br /> <a href="https://github.com/UltimatePro-Grammer/LearnWhiteHat" rel="noopener noreferrer" target="_blank">Contribute some?</a></h1>
+                    <h1 className="no-chall">Loading...</h1>
                 }
             </section>
         )
@@ -48,7 +52,7 @@ class Content extends React.Component<ContentProps, {genre: Genre, difficulty: D
             return response.json();
         })
         .then((json)=>{
-            this.setState({cards: json.map((j: {title: string, desc: string, tags: string})=>{return {difficulty: this.state.difficulty, ...j, tags: j.tags.split(",")}})});
+            this.setState({loaded: true, cards: json.map((j: {title: string, desc: string, tags: string})=>{return {difficulty: this.state.difficulty, ...j, tags: j.tags.split(",")}})});
         });
     }
 }

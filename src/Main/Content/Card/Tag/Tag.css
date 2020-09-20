@@ -1,6 +1,7 @@
 .Tag {
     padding:0.3em 0.7em;
     margin-right:0.5em;
+    margin-bottom: 9999px; /* Fix chrome issue with tag overflow */
     background-color: var(--accent-3);
     color: white;
     border-radius: 13px;
@@ -13,8 +14,13 @@
     appearance: none;
     -webkit-appearance: none;
     text-decoration: none;
-    border: none
+    border: none;
+    outline: none;
+    transition: filter 0.1s;
+    margin-top: 0.5em;
+    margin-left: 0.1em;
 }
 .Tag:active {
     box-shadow: -1px -1px 4px rgba(0,0,0,0.1);
+    filter: contrast(2);
 }
