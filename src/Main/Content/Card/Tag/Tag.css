@@ -20,6 +20,16 @@
     margin-top: 0.5em;
     margin-left: 0.1em;
 }
+.Tag:focus {
+    filter: contrast(1.5);
+}
+.Tag:focus-visible {
+    outline: var(--accent) solid 2px;
+}
+.Tag:-moz-focusring {
+    outline: var(--accent) solid 2px;
+
+}
 .Tag:active {
     box-shadow: -1px -1px 4px rgba(0,0,0,0.1);
     filter: contrast(2);
