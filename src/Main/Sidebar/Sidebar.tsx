@@ -14,6 +14,7 @@ class Sidebar extends React.Component<SidebarProps, {width: string, desc: string
         XSS: "Attempt to execute arbitrary javascript on a victim's browser. Complete the challenge by successfully executing an alert on the page.",
         CTF: "CTF (Capture The Flag) involves finding a specific string token which is submitted to beat the challenge."
     }
+    ro: ResizeObserver|undefined
     handleGenreSelect = (value: string)=>{
         this.setState({desc: this.descriptions[value]});
         console.log(value);
@@ -50,6 +51,12 @@ class Sidebar extends React.Component<SidebarProps, {width: string, desc: string
         });
         if(this.container.current) {
             ro.observe(this.container.current);
+        }
+        this.ro = ro;
+    }
+    componentWillUnmount() {
+        if(this.ro) {
+            this.ro.disconnect();
         }
     }
 }
