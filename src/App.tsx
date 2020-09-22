@@ -4,6 +4,16 @@ import './App.css';
 import Header from './Header/Header';
 import Main from './Main/Main';
 
+//* DEBUG
+// import db from "./databases/challenges"
+// setTimeout(()=>{
+//   db.delete().then(() => {
+//     console.log("Database successfully deleted");
+//   }).catch((err) => {
+//       console.error("Could not delete database");
+//   })
+// }, 3000);
+
 function App() {
   return (
     <div className="App">

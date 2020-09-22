@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card/Card';
 import './Content.css';
+import db, { ChallengeTable } from "../../databases/challenges"
 interface ContentProps {
     genre: string,
     difficulty: string
@@ -8,7 +9,7 @@ interface ContentProps {
 type Genre = "xss" | "ctf";
 type Difficulty = "easy" | "intermediate" | "Advanced" | "Pro";
 
-class Content extends React.Component<ContentProps, {genre: Genre, difficulty: Difficulty, cards: {title: string, desc: string, tags: [], difficulty: string, html: string}[], loaded: boolean}> {
+class Content extends React.Component<ContentProps, {genre: Genre, difficulty: Difficulty, cards: ChallengeTable[], loaded: boolean}> {
     constructor(props: ContentProps) {
         super(props);
         this.state = {
@@ -46,13 +47,20 @@ class Content extends React.Component<ContentProps, {genre: Genre, difficulty: D
         }
     }
     updateChallenges = ()=>{
-        let newFetch = `/challenges/${this.props.genre}/${this.props.difficulty}.json`;
-        fetch(newFetch)
-        .then((response)=>{
-            return response.json();
+        // let newFetch = `/challenges/${this.props.genre}/${this.props.difficulty}.json`;
+        // fetch(newFetch)
+        // .then((response)=>{
+        //     return response.json();
+        // })
+        // .then((json)=>{
+        //     this.setState({loaded: true, cards: json.map((j: {title: string, desc: string, tags: string})=>{return {difficulty: this.state.difficulty, ...j, tags: j.tags.split(",")}})});
+        // });
+        db.challenges.where("difficulty").equals(this.props.difficulty)
+        .and((x: ChallengeTable) => {
+            return x.genre === this.props.genre;
         })
-        .then((json)=>{
-            this.setState({loaded: true, cards: json.map((j: {title: string, desc: string, tags: string})=>{return {difficulty: this.state.difficulty, ...j, tags: j.tags.split(",")}})});
+        .toArray((arr: ChallengeTable[])=>{
+            this.setState({loaded: true, cards: arr});
         });
     }
 }
