@@ -1,7 +1,7 @@
 import Dexie from "dexie"
 const db = new Dexie("challenges") as challenges;
 db.version(1).stores({
-    challenges: `++id, title, difficulty, genre, *tags`
+    challenges: `++id, title, difficulty, genre, completed, *tags`
 });
 db.on("ready", ()=>{
     // modified slightly from the ajax example on https://dexie.org/docs/Dexie/Dexie.on.populate.html 
@@ -14,9 +14,9 @@ db.on("ready", ()=>{
                 console.log("Database is empty. Populating from ajax call...");
                 fetch("/challenges/all.json")
                 .then(response=>response.json())
-                .then((data)=>{
+                .then((data: fetchedJson[])=>{
                     console.log("Calling bulkAdd() to insert objects...");
-                    return db.challenges.bulkAdd(data);
+                    return db.challenges.bulkAdd(data.map((obj: fetchedJson)=>{return {completed: false, ...obj}}) as ChallengeTable[]);
                 }).then(()=>{
                     console.log ("Done populating challenges.");
                     resolve();
@@ -32,22 +32,31 @@ db.open().catch((error: Error)=>{
 export default db;
 
 // typescript stuff
+type fetchedJson = {
+    title: string,
+    desc: string,
+    tags: string[],
+    html: string,
+    difficulty: string,
+    genre: string
+}
 export class challenges extends Dexie {
     challenges: Dexie.Table<ChallengeTable, number>
     constructor() {
         super("challenges");
         db.version(1).stores({
-            challenges: `++id, title, difficulty, genre, *tags`
+            challenges: `++id, title, difficulty, genre, completed, *tags`
         });
-
         this.challenges = this.table("challenges");
     }
 }
 export interface ChallengeTable {
     id: number;
     title: string;
+    desc: string;
     difficulty: string;
     genre: string;
     tags: string[];
     html: string;
+    completed: boolean;
 }

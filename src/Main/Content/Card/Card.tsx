@@ -3,7 +3,7 @@ import { useLocation } from 'wouter';
 import './Card.css';
 import Tag from './Tag/Tag';
 
-const Card = (props: {title: string, tags: string[], difficulty: string, html?:string})=>{
+const Card = (props: {title: string, tags: string[], difficulty: string, html?:string, id: number, description: string})=>{
     const setLocation = useLocation()[1];
 
     const urlFormat = (toFormat: string)=>{ // %20 makes urls look ugly, so this is the solution
@@ -13,7 +13,7 @@ const Card = (props: {title: string, tags: string[], difficulty: string, html?:s
         setLocation("/c/"+urlFormat(props.title));
     }
     const goKeyboard = (event: React.KeyboardEvent<HTMLDivElement>)=>{
-        if(event.key === "Space" || event.key === "Enter") {
+        if(event.key === " " || event.key === "Enter") {
             go();
         }
     }
@@ -21,7 +21,7 @@ const Card = (props: {title: string, tags: string[], difficulty: string, html?:s
     return (
         <div className="Card" role="button" tabIndex={0} onClick={go} onKeyDown={goKeyboard}>
             <h1>{props.title}</h1>
-            <p>Content goes here Content goes here Content goes here Content goes here Content goes here Content goes here</p>
+            <p>{props.description}</p>
             <iframe className="preview" tabIndex={-1} srcDoc={props.html} title="Challenge Preview">Your browser does not support LearnWhiteHat</iframe>
             <div className="tag-container">
                 {props.tags.map((val)=>{

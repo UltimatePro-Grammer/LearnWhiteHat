@@ -29,7 +29,7 @@ class Content extends React.Component<ContentProps, {genre: Genre, difficulty: D
                     this.state.loaded ? 
                         this.state.cards.length > 0 ?
                         this.state.cards.map((obj)=>{
-                            return <Card title={obj.title} key={obj.title} tags={obj.tags} difficulty={obj.difficulty[0].toLocaleUpperCase()+obj.difficulty.slice(1)} html={obj.html} />
+                            return <Card title={obj.title} key={obj.title} tags={obj.tags} difficulty={obj.difficulty[0].toLocaleUpperCase()+obj.difficulty.slice(1)} html={obj.html} id={obj.id} description={obj.desc}/>
                         })
                         :
                         <h1 className="no-chall">No challenges under these restrictions. <br /> <a href="https://github.com/UltimatePro-Grammer/LearnWhiteHat" rel="noopener noreferrer" target="_blank">Contribute some?</a></h1>
@@ -47,14 +47,6 @@ class Content extends React.Component<ContentProps, {genre: Genre, difficulty: D
         }
     }
     updateChallenges = ()=>{
-        // let newFetch = `/challenges/${this.props.genre}/${this.props.difficulty}.json`;
-        // fetch(newFetch)
-        // .then((response)=>{
-        //     return response.json();
-        // })
-        // .then((json)=>{
-        //     this.setState({loaded: true, cards: json.map((j: {title: string, desc: string, tags: string})=>{return {difficulty: this.state.difficulty, ...j, tags: j.tags.split(",")}})});
-        // });
         db.challenges.where("difficulty").equals(this.props.difficulty)
         .and((x: ChallengeTable) => {
             return x.genre === this.props.genre;
