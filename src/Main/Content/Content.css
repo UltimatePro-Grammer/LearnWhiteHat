@@ -23,3 +23,40 @@
         margin-top: 0;
     }
 }
+.searcher {
+    width:100%;
+    display: block;
+    font-size:1.6em;
+    padding: 0.7rem 0;
+    padding-left: 3.1rem;
+    outline: 0;
+    border: none;
+    background-color: white;
+}
+.searcher::-webkit-search-decoration {
+  -webkit-appearance:none;
+}
+.search {
+    position: relative;
+    width: 90%;
+    margin: 0.7rem auto;
+    margin-bottom:0;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+.bar {
+    content:"";
+    height:0.2rem;
+    width:100%;
+    background-color: black;
+    position: absolute;
+    bottom:0.45rem;
+    left: 3.1rem;
+}
+.search img {
+    position: absolute;
+    width:2rem;
+    left:0.5rem;
+}

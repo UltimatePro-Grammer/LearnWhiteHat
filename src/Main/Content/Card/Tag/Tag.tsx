@@ -5,7 +5,7 @@ import './Tag.css';
 const Tag = (props: {tagName: string, color?: string})=>{
     const setLocation = useLocation()[1];
     const go = (event: {stopPropagation: Function})=>{
-        setLocation("/t/"+encodeURIComponent(props.tagName));
+        setLocation("/t/"+encodeURIComponent(props.tagName.toLowerCase()));
         event.stopPropagation();
     }
     const goKeyboard = (event: React.KeyboardEvent<HTMLButtonElement>)=>{

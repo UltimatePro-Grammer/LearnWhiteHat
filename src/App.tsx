@@ -17,22 +17,18 @@ import Main from './Main/Main';
 function App() {
   return (
     <div className="App">
+      <Header />
       <Switch>
         <Route path="/">
-          <Header />
           <Main />
         </Route>
         <Route path="/t/:tag">
-          {({tag})=>{
-           return (
-            <Header />
-           );
-          }}
+          <Main />
         </Route>
         <Route path="/c/:title">
           {({title})=>{
            return (
-            <Header />
+            <div>{title}</div>
            );
           }}
         </Route>

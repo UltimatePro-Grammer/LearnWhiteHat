@@ -17,7 +17,6 @@ class Sidebar extends React.Component<SidebarProps, {width: string, desc: string
     ro: ResizeObserver|undefined
     handleGenreSelect = (value: string)=>{
         this.setState({desc: this.descriptions[value]});
-        console.log(value);
         this.props.genreSelect(value.toLowerCase());
     }
     handleDifficultySelect = (value: string)=>{
